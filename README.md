@@ -25,8 +25,10 @@
 ```
 Lab5Web/
 ├── index.html      (struktur halaman)
-├── script.js       (kode JavaScript)
-├── screenshoot/    (1.png - 15.png)
+├── script.js       (kode JavaScript latihan)
+├── eksperimen.html (halaman eksperimen mandiri)
+├── eksperimen.js   (kode JavaScript eksperimen mandiri)
+├── screenshoot/    (1.png - 21.png)
 └── README.md
 ```
 
@@ -334,6 +336,263 @@ Hasil perhitungan program pada ketiga skenario sesuai dengan perhitungan manual 
 
 ---
 
-## 5. Kesimpulan
+## 5. Eksperimen Mandiri
 
-Pada praktikum ini dipelajari dasar-dasar JavaScript: menampilkan output di halaman dan Console, berinteraksi dengan pengguna melalui `alert` dan `prompt`, membuat function, serta menggunakan seleksi kondisi `if-else` dan `switch`. Disadari bahwa `prompt` dan nilai input form selalu bertipe string sehingga perlu dikonversi dengan `Number()` dan divalidasi sebelum dihitung. Selain itu dipelajari manipulasi DOM (`getElementById`, `querySelectorAll`, `textContent`, `style`) dan penanganan event (`onclick` dan `addEventListener`). Mini project kalkulator nilai mahasiswa menunjukkan bagaimana function, kondisi, dan DOM digabungkan menjadi program yang menampilkan hasil perhitungan pada halaman web.
+Eksperimen mandiri dikerjakan pada halaman terpisah, yaitu `eksperimen.html` (struktur dan tampilan) dan `eksperimen.js` (logika program). Halaman ini memuat eksperimen nomor 1, 7, 8, 9, 10, dan 11. Hasil eksperimen 1, 7, dan 8 ditampilkan di Console browser (F12), sedangkan eksperimen 9, 10, dan 11 berjalan langsung pada halaman.
+
+Script dihubungkan dengan:
+
+```html
+<script src="eksperimen.js"></script>
+```
+
+### Kode `eksperimen.html`
+
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eksperimen Mandiri - Praktikum 5</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+    }
+    section {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+    button {
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+    .pesan-error {
+      color: red;
+    }
+    .pesan-sukses {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Halaman Eksperimen Mandiri</h1>
+
+  <!-- Nomor 1 & 7 & 8 diproses lewat console/prompt -->
+  <section>
+    <h2>Eksperimen 1, 7, dan 8</h2>
+    <p>Hasil dari Latihan 3 (Prompt), Tabel Perkalian 7, dan Pengujian <code>cekGenap()</code> dapat dilihat pada panel <strong>Console Browser (F12)</strong>.</p>
+  </section>
+
+  <!-- Nomor 9: Validasi Form Tidak Boleh Kosong -->
+  <section>
+    <h2>Eksperimen 9: Validasi Form Nama</h2>
+    <form id="formInput">
+      <label for="namaSiswa">Masukkan Nama:</label>
+      <input type="text" id="namaSiswa">
+      <button type="button" onclick="validasiKosong()">Kirim</button>
+    </form>
+    <p id="pesanForm"></p>
+  </section>
+
+  <!-- Nomor 10: Latihan 8 Tambahan 2 Menu -->
+  <section>
+    <h2>Eksperimen 10: Daftar Menu Tambahan</h2>
+    <label><input type="checkbox" class="menu" value="5000"> Ayam Goreng — Rp5.000</label><br>
+    <label><input type="checkbox" class="menu" value="500"> Tempe — Rp500</label><br>
+    <label><input type="checkbox" class="menu" value="2500"> Telur Dadar — Rp2.500</label><br>
+    <!-- Tambahan 2 Menu Baru -->
+    <label><input type="checkbox" class="menu" value="3000"> Es Teh Manis — Rp3.000</label><br>
+    <label><input type="checkbox" class="menu" value="4000"> Es Jeruk — Rp4.000</label><br>
+    <p>Total: Rp<span id="total">0</span></p>
+  </section>
+
+  <!-- Nomor 11: Menyembunyikan dan Menampilkan Elemen -->
+  <section>
+    <h2>Eksperimen 11: Toggle Sembunyikan/Tampilkan Elemen</h2>
+    <p id="teksSembunyi">Teks ini bisa disembunyikan dan ditampilkan kembali dengan tombol di bawah.</p>
+    <button type="button" onclick="toggleElemen()">Sembunyikan / Tampilkan</button>
+  </section>
+
+  <script src="eksperimen.js"></script>
+</body>
+</html>
+```
+
+### Eksperimen 1 – Latihan 3 dengan input dari prompt
+
+Function `operasiDasar` dari Latihan 3 diubah agar menerima dua angka dari `prompt`, lalu dikonversi ke tipe number.
+
+```javascript
+const input1 = prompt("Eksperimen 1 - Masukkan angka pertama:");
+const input2 = prompt("Eksperimen 1 - Masukkan angka kedua:");
+
+const num1 = Number(input1);
+const num2 = Number(input2);
+
+function operasiDasar(a, b) {
+  if (input1 === null || input2 === null || input1.trim() === "" || input2.trim() === "" || Number.isNaN(a) || Number.isNaN(b)) {
+    console.log("Input harus berupa angka yang valid.");
+    return;
+  }
+  console.log("Penjumlahan:", a + b);
+  console.log("Pengurangan:", a - b);
+  console.log("Perkalian:", a * b);
+  console.log("Pembagian:", b !== 0 ? a / b : "Tidak dapat dibagi nol");
+  console.log("Modulus:", a % b);
+}
+
+operasiDasar(num1, num2);
+```
+
+**Penjelasan:**
+
+- `prompt` menghasilkan string, sehingga `Number()` dipakai untuk mengubahnya menjadi angka sebelum dihitung.
+- Validasi memastikan input tidak `null` (Cancel), tidak kosong, dan merupakan angka (`Number.isNaN`). Jika tidak valid, Console menampilkan "Input harus berupa angka yang valid." dan perhitungan dihentikan dengan `return`.
+- Jika valid, lima operasi ditampilkan di Console.
+
+**Pengujian:** dua kotak dialog `prompt` muncul berurutan. Pada pengujian ini angka pertama 12 dan angka kedua 18 dimasukkan.
+
+![Prompt angka pertama](screenshoot/17.png)
+
+![Prompt angka kedua](screenshoot/18.png)
+
+**Hasil di Console** (Console juga memuat hasil Eksperimen 7 dan 8 di bawahnya):
+
+| Operasi | Perhitungan | Hasil |
+|---|---|---|
+| Penjumlahan | 12 + 18 | 30 |
+| Pengurangan | 12 − 18 | −6 |
+| Perkalian | 12 × 18 | 216 |
+| Pembagian | 12 / 18 | 0.6666666666666666 |
+| Modulus (sisa bagi) | 12 % 18 | 12 |
+
+![Hasil Eksperimen 1, 7, dan 8 di Console](screenshoot/19.png)
+
+### Eksperimen 7 – Tabel perkalian 7 dengan perulangan
+
+```javascript
+console.log("Tabel Perkalian 7:");
+for (let i = 1; i <= 10; i++) {
+  console.log(`7 x ${i} = ${7 * i}`);
+}
+```
+
+**Penjelasan:** perulangan `for` dengan variabel `i` dari 1 sampai 10 menampilkan satu baris di Console pada setiap putaran. Template literal (tanda `` ` ``) memudahkan penyisipan nilai `i` dan hasil `7 * i` ke dalam teks. Pada Console tampil `7 x 1 = 7` sampai `7 x 10 = 70` (lihat screenshot Console pada Eksperimen 1, bagian bawah "=== EKSPERIMEN 7 ===").
+
+### Eksperimen 8 – Function `cekGenap(angka)`
+
+```javascript
+function cekGenap(angka) {
+  return angka % 2 === 0;
+}
+
+console.log("Apakah 4 genap?", cekGenap(4)); // true
+console.log("Apakah 7 genap?", cekGenap(7)); // false
+```
+
+**Penjelasan:** function mengembalikan nilai boolean `true` jika sisa bagi angka dengan 2 sama dengan 0, dan `false` jika tidak. Pengujian dengan angka 4 menghasilkan `true`, dan dengan angka 7 menghasilkan `false`, seperti terlihat pada Console di bagian "=== EKSPERIMEN 8 ===" (screenshot yang sama dengan Eksperimen 1).
+
+### Eksperimen 9 – Validasi form tidak boleh kosong
+
+```javascript
+function validasiKosong() {
+  const input = document.getElementById("namaSiswa").value.trim();
+  const pesan = document.getElementById("pesanForm");
+
+  if (input === "") {
+    pesan.textContent = "Kolom nama tidak boleh kosong!";
+    pesan.className = "pesan-error";
+  } else {
+    pesan.textContent = "Data berhasil dikirim: " + input;
+    pesan.className = "pesan-sukses";
+  }
+}
+```
+
+**Penjelasan:**
+
+- Tombol **Kirim** memanggil `validasiKosong()` lewat atribut `onclick`.
+- `.trim()` menghapus spasi di awal dan akhir sehingga input yang hanya berisi spasi tetap dianggap kosong.
+- Jika kosong, ditampilkan pesan kesalahan berwarna merah (class `pesan-error`). Jika terisi, ditampilkan pesan sukses berwarna hijau (class `pesan-sukses`) beserta nama yang dimasukkan. Perubahan warna dilakukan dengan mengganti `className` pada elemen `<p id="pesanForm">`.
+
+**Hasil:** tombol **Kirim** ditekan saat kolom nama kosong, sehingga muncul pesan merah "Kolom nama tidak boleh kosong!".
+
+![Validasi form nama kosong](screenshoot/20.png)
+
+### Eksperimen 10 – Menambah pilihan menu pada Latihan 8
+
+Pada daftar menu ditambahkan dua pilihan baru, yaitu **Es Teh Manis (Rp3.000)** dan **Es Jeruk (Rp4.000)**.
+
+```javascript
+function hitungTotal() {
+  const daftarMenu = document.querySelectorAll(".menu");
+  let total = 0;
+
+  daftarMenu.forEach((item) => {
+    if (item.checked) {
+      total += Number(item.value);
+    }
+  });
+
+  document.getElementById("total").textContent = total.toLocaleString("id-ID");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const daftarMenu = document.querySelectorAll(".menu");
+  daftarMenu.forEach((item) => {
+    item.addEventListener("change", hitungTotal);
+  });
+});
+```
+
+**Penjelasan:**
+
+- Karena `hitungTotal` mengambil semua elemen ber-class `menu` dengan `querySelectorAll`, penambahan menu baru cukup dilakukan di HTML (checkbox dengan class `menu` dan `value` harga) tanpa mengubah logika perhitungan.
+- Event listener dipasang di dalam `DOMContentLoaded` sehingga baru berjalan setelah seluruh elemen HTML selesai dimuat.
+- Contoh: jika semua lima menu dicentang, total adalah 5.000 + 500 + 2.500 + 3.000 + 4.000 = Rp15.000.
+
+**Hasil:** dua menu baru tampil pada daftar. Pada pengujian ini tiga menu pertama dicentang sehingga total yang tampil adalah Rp8.000 (5.000 + 500 + 2.500).
+
+![Daftar menu tambahan dan total harga](screenshoot/21.png)
+
+### Eksperimen 11 – Menyembunyikan dan menampilkan elemen
+
+```javascript
+function toggleElemen() {
+  const elemen = document.getElementById("teksSembunyi");
+  if (elemen.style.display === "none") {
+    elemen.style.display = "block";
+  } else {
+    elemen.style.display = "none";
+  }
+}
+```
+
+**Penjelasan:** setiap kali tombol ditekan, function memeriksa nilai `style.display` elemen `teksSembunyi`. Jika sedang `none` (tersembunyi), elemen ditampilkan kembali dengan `block`. Jika sedang tampil, elemen disembunyikan dengan `none`. Dengan cara ini satu tombol berfungsi sebagai saklar (*toggle*).
+
+**Hasil:** tampilan awal halaman, dengan teks dan tombol **Sembunyikan / Tampilkan**. Ketika tombol ditekan, teks menghilang, dan ketika ditekan lagi, teks muncul kembali.
+
+![Eksperimen 11 toggle elemen](screenshoot/16.png)
+
+### Ringkasan eksperimen
+
+| No | Eksperimen | Konsep yang dipakai | Tempat melihat hasil |
+|---|---|---|---|
+| 1 | Latihan 3 dengan input `prompt` | `prompt`, `Number()`, validasi | Console |
+| 7 | Tabel perkalian 7 | Perulangan `for`, template literal | Console |
+| 8 | Function `cekGenap(angka)` | Function, `return`, operator `%` | Console |
+| 9 | Validasi form tidak boleh kosong | DOM, `trim()`, `className` | Halaman |
+| 10 | Tambah dua menu pada Latihan 8 | `querySelectorAll`, `change`, `DOMContentLoaded` | Halaman |
+| 11 | Sembunyikan/tampilkan elemen | `style.display`, `onclick` | Halaman |
+
+---
+
+## 6. Kesimpulan
+
+Pada praktikum ini dipelajari dasar-dasar JavaScript: menampilkan output di halaman dan Console, berinteraksi dengan pengguna melalui `alert` dan `prompt`, membuat function, serta menggunakan seleksi kondisi `if-else` dan `switch`. Disadari bahwa `prompt` dan nilai input form selalu bertipe string sehingga perlu dikonversi dengan `Number()` dan divalidasi sebelum dihitung. Selain itu dipelajari manipulasi DOM (`getElementById`, `querySelectorAll`, `textContent`, `style`) dan penanganan event (`onclick` dan `addEventListener`). Eksperimen mandiri menambah pemahaman tentang perulangan `for`, validasi form, penambahan data pada daftar dinamis, dan manipulasi tampilan elemen (toggle). Mini project kalkulator nilai mahasiswa menunjukkan bagaimana function, kondisi, dan DOM digabungkan menjadi program yang menampilkan hasil perhitungan pada halaman web.
