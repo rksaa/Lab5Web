@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eksperimen Mandiri - Praktikum 5</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+    }
+    section {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+    button {
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+    .pesan-error {
+      color: red;
+    }
+    .pesan-sukses {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Halaman Eksperimen Mandiri</h1>
+
+  <!-- Nomor 1 & 7 & 8 diproses lewat console/prompt -->
+  <section>
+    <h2>Eksperimen 1, 7, dan 8</h2>
+    <p>Hasil dari Latihan 3 (Prompt), Tabel Perkalian 7, dan Pengujian <code>cekGenap()</code> dapat dilihat pada panel <strong>Console Browser (F12)</strong>.</p>
+  </section>
+
+  <!-- Nomor 9: Validasi Form Tidak Boleh Kosong -->
+  <section>
+    <h2>Eksperimen 9: Validasi Form Nama</h2>
+    <form id="formInput">
+      <label for="namaSiswa">Masukkan Nama:</label>
+      <input type="text" id="namaSiswa">
+      <button type="button" onclick="validasiKosong()">Kirim</button>
+    </form>
+    <p id="pesanForm"></p>
+  </section>
+
+  <!-- Nomor 10: Latihan 8 Tambahan 2 Menu -->
+  <section>
+    <h2>Eksperimen 10: Daftar Menu Tambahan</h2>
+    <label><input type="checkbox" class="menu" value="5000"> Ayam Goreng — Rp5.000</label><br>
+    <label><input type="checkbox" class="menu" value="500"> Tempe — Rp500</label><br>
+    <label><input type="checkbox" class="menu" value="2500"> Telur Dadar — Rp2.500</label><br>
+    <!-- Tambahan 2 Menu Baru -->
+    <label><input type="checkbox" class="menu" value="3000"> Es Teh Manis — Rp3.000</label><br>
+    <label><input type="checkbox" class="menu" value="4000"> Es Jeruk — Rp4.000</label><br>
+    <p>Total: Rp<span id="total">0</span></p>
+  </section>
+
+  <!-- Nomor 11: Menyembunyikan dan Menampilkan Elemen -->
+  <section>
+    <h2>Eksperimen 11: Toggle Sembunyikan/Tampilkan Elemen</h2>
+    <p id="teksSembunyi">Teks ini bisa disembunyikan dan ditampilkan kembali dengan tombol di bawah.</p>
+    <button type="button" onclick="toggleElemen()">Sembunyikan / Tampilkan</button>
+  </section>
+
+  <script src="eksperimen.js"></script>
+</body>
+</html>
