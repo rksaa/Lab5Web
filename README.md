@@ -9,6 +9,193 @@
 | **Mata Kuliah** | Pemrograman Web |
 | **Universitas** | Universitas Pelita Bangsa |
 
+
+# Pertanyaan dan Tugas
+
+## 1. Perbedaan Output dan Interaksi JavaScript
+
+### `console.log()`
+- Menampilkan data atau pesan ke **Console** pada browser (`Inspect → Console`).
+- Digunakan untuk proses **debugging** tanpa mengganggu tampilan pengguna.
+
+### `alert()`
+- Menampilkan kotak dialog peringatan dengan tombol **OK**.
+- Menghentikan sementara eksekusi program sampai pengguna menutup dialog.
+
+### `prompt()`
+- Menampilkan kotak dialog untuk meminta input dari pengguna.
+- Nilai yang dikembalikan bertipe **String** atau `null` jika dibatalkan.
+
+### `textContent` dan `innerHTML`
+- **`textContent`** digunakan untuk mengubah isi teks suatu elemen HTML.
+- **`innerHTML`** digunakan untuk mengubah isi elemen HTML sekaligus dapat merender tag HTML di dalamnya.
+
+---
+
+## 2. Perbedaan `let` dan `const`
+
+### `let`
+- Digunakan untuk mendeklarasikan variabel.
+- Nilainya **dapat diubah kembali** (*re-assignable*).
+
+### `const`
+- Digunakan untuk mendeklarasikan konstanta.
+- Nilainya **tidak dapat diubah kembali** setelah diinisialisasi.
+
+### Contoh
+
+```javascript
+// Contoh let
+let umur = 20;
+umur = 21; // Berhasil diubah
+
+// Contoh const
+const nama = "Rani";
+// nama = "Budi"; // Error: Assignment to constant variable.
+```
+
+---
+
+## 3. Perbedaan Operator `==` dan `===`
+
+### `==` (Loose Equality)
+- Membandingkan dua nilai **tanpa memperhatikan tipe data**.
+- JavaScript akan melakukan konversi tipe data secara otomatis.
+
+### `===` (Strict Equality)
+- Membandingkan dua nilai **beserta tipe datanya**.
+- Bernilai `true` hanya jika nilai dan tipe datanya sama.
+
+### Contoh
+
+```javascript
+console.log(5 == "5");  // true
+console.log(5 === "5"); // false
+```
+
+---
+
+## 4. Fungsi `if-else` dan `switch`
+
+### `if-else`
+**Fungsi:**
+- Menyeleksi kondisi berdasarkan ekspresi boolean (`true` atau `false`).
+
+**Penggunaan:**
+- Cocok untuk kondisi yang kompleks.
+- Dapat digunakan untuk rentang nilai.
+- Mendukung operator logika seperti `&&` dan `||`.
+
+### `switch`
+**Fungsi:**
+- Menyeleksi satu nilai terhadap beberapa pilihan (`case`).
+
+**Penggunaan:**
+- Cocok digunakan jika memiliki banyak pilihan berdasarkan satu nilai tertentu, misalnya menu atau pilihan angka.
+
+---
+
+## 5. Fungsi Parameter dan `return`
+
+### Parameter
+- Variabel yang menerima nilai masukan saat fungsi dipanggil.
+
+### `return`
+- Digunakan untuk mengembalikan hasil proses dari fungsi kepada pemanggil.
+
+### Contoh
+
+```javascript
+function hitungLuas(panjang, lebar) {
+    return panjang * lebar;
+}
+```
+
+---
+
+## 6. Cara `document.getElementById()` Memilih Elemen HTML
+
+Method `document.getElementById()` digunakan untuk mencari dan mengambil **satu elemen HTML** berdasarkan nilai atribut `id`.
+
+### HTML
+
+```html
+<p id="pesan">Konten awal.</p>
+```
+
+### JavaScript
+
+```javascript
+const elemenPesan = document.getElementById("pesan");
+elemenPesan.textContent = "Teks Baru";
+```
+
+---
+
+## 7. Script Validasi Form (Nama Tidak Kosong & Nilai 0–100)
+
+### HTML
+
+```html
+<form id="formMahasiswa">
+    <label for="nama">Nama:</label>
+    <input type="text" id="nama">
+
+    <label for="nilai">Nilai (0-100):</label>
+    <input type="number" id="nilai">
+
+    <button type="button" onclick="validasiForm()">
+        Kirim
+    </button>
+</form>
+
+<p id="pesanError" style="color:red;"></p>
+```
+
+### JavaScript
+
+```javascript
+function validasiForm() {
+    const nama = document.getElementById("nama").value.trim();
+    const inputNilai = document.getElementById("nilai").value.trim();
+    const nilai = Number(inputNilai);
+    const pesanError = document.getElementById("pesanError");
+
+    // Reset pesan error
+    pesanError.textContent = "";
+
+    // Validasi nama
+    if (nama === "") {
+        pesanError.textContent = "Nama tidak boleh kosong!";
+        return false;
+    }
+
+    // Validasi nilai
+    if (
+        inputNilai === "" ||
+        Number.isNaN(nilai) ||
+        nilai < 0 ||
+        nilai > 100
+    ) {
+        pesanError.textContent =
+            "Nilai harus berupa angka pada rentang 0–100!";
+        return false;
+    }
+
+    alert("Validasi berhasil! Data siap diproses.");
+    return true;
+}
+```
+
+### Penjelasan
+- Nama tidak boleh kosong.
+- Nilai harus berupa angka.
+- Nilai harus berada pada rentang **0–100**.
+- Jika validasi berhasil, akan muncul pesan:
+  ```
+  Validasi berhasil! Data siap diproses.
+  ```
+
 ---
 
 ## 1. Tujuan Praktikum
