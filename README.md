@@ -4,7 +4,7 @@
 |---|---|
 | **Nama** | Riksa Siddiq Alrizki |
 | **NIM** | 312510015 |
-| **Kelas** | I253D |
+| **Kelas** | I253A |
 | **Program Studi** | Teknik Informatika |
 | **Mata Kuliah** | Pemrograman Web |
 | **Universitas** | Universitas Pelita Bangsa |
